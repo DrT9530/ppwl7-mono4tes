@@ -28,7 +28,10 @@ const isBrowserRequest = (request: Request): boolean => {
 
 const app = new Elysia()
   // !!! modifikasi cors() dan onRequest
-  .use(cors({ origin: [process.env.FRONTEND_URL ?? "", process.env.TEST_URL ?? ""] }))
+  .use(cors({ 
+  origin: [process.env.FRONTEND_URL ?? ""], 
+  credentials: true 
+}))
   .onRequest(({ request, set }) => {
     const url = new URL(request.url);
     // HANYA jalankan logika jika path dimulai dengan /users
